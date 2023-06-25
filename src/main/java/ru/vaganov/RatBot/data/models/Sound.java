@@ -3,6 +3,7 @@ package ru.vaganov.RatBot.data.models;
 
 import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import ru.vaganov.RatBot.bot.BotEnvironment;
 
 @Entity
 public class Sound {
@@ -11,13 +12,11 @@ public class Sound {
     @GeneratedValue
     private Long id;
 
-    @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "guildID", referencedColumnName = "guildId")
-    private Guild guild;
-
+    private String guildid;
 
     private String filename;
 
+    private String title;
     public Sound(){}
 
     public String getFilename() {
@@ -26,5 +25,26 @@ public class Sound {
 
     public void setFilename(String filename) {
         this.filename = filename;
+    }
+
+    public String getTitle() {
+        if(title==null) return filename;
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getGuildid() {
+        return guildid;
+    }
+
+    public void setGuildid(String guildid) {
+        this.guildid = guildid;
+    }
+
+    public String getAbsolutePath(){
+        return BotEnvironment.getLibraryPath()+"\"" + getGuildid()+"\""+getFilename();
     }
 }
