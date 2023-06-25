@@ -21,4 +21,9 @@ public class BotEnvironment {
         return dotenv.get("TOKEN");
     }
 
+    public static String getLibraryPath(){
+        checkEnvCreated();
+        return dotenv.get("SoundLibraryPath");
+    }
+
 }

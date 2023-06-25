@@ -3,7 +3,7 @@ package ru.vaganov.RatBot.bot.events;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
-public class BotListener extends ListenerAdapter {
+public class InfoCommandsListener extends ListenerAdapter {
 
 
     @Override
@@ -26,5 +26,7 @@ public class BotListener extends ListenerAdapter {
     }
 
 
+    private void about(SlashCommandInteractionEvent event){
 
+    }
 }
