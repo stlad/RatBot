@@ -5,6 +5,9 @@ import ru.vaganov.RatBot.bot.BotEnvironment;
 import ru.vaganov.RatBot.data.models.Sound;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,6 +25,7 @@ public class DirectoryLibrary implements SoundLibrary{
         File dir = new File(basePath+guildId);
         File[] arrFiles = dir.listFiles();
         List<Sound> sounds = new ArrayList<>();
+        if(arrFiles == null) return sounds;
         for(File file:arrFiles){
             Sound sound = new Sound();
             sound.setFilename(file.getName());
@@ -38,7 +42,21 @@ public class DirectoryLibrary implements SoundLibrary{
 
     @Override
     public Integer getCountByGuildID(String guildID) {
-        File dir = new File(BotEnvironment.getLibraryPath()+guildID); //path указывает на директорию
+        File dir = new File(basePath+guildID); //path указывает на директорию
         return dir.listFiles().length;
     }
+
+    @Override
+    public void addToGuild(String guildID) {
+        //TODO сделать добавление звука, а не только директории
+        try{
+            addDirectory(guildID);
+        }
+        catch (IOException e){return;}
+    }
+
+    private void addDirectory(String dirName) throws IOException {
+        Files.createDirectories(Paths.get(basePath + dirName));
+    }
+
 }

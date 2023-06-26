@@ -12,5 +12,5 @@ public interface SoundLibrary {
 
     public Integer getCountByGuildID(String guildID);
 
-
+    public void addToGuild(String guildID);
 }
