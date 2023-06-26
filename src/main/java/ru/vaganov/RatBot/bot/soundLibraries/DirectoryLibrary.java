@@ -36,11 +36,6 @@ public class DirectoryLibrary implements SoundLibrary{
     }
 
     @Override
-    public Integer getCount() {
-        return null;
-    }
-
-    @Override
     public Integer getCountByGuildID(String guildID) {
         File dir = new File(basePath+guildID); //path указывает на директорию
         return dir.listFiles().length;
@@ -53,6 +48,15 @@ public class DirectoryLibrary implements SoundLibrary{
             addDirectory(guildID);
         }
         catch (IOException e){return;}
+    }
+
+    @Override
+    public Sound getSound(String guildID, String filename) {
+        var s = basePath+guildID + "\\" + filename;
+        File soundFile = new File(basePath+guildID + "\\" + filename);
+        if(!soundFile.exists()) return null;
+        Sound sound = new Sound(guildID, filename);
+        return sound;
     }
 
     private void addDirectory(String dirName) throws IOException {

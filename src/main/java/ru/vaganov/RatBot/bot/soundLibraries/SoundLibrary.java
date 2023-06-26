@@ -8,9 +8,9 @@ import java.util.List;
 public interface SoundLibrary {
     public List<Sound> getSoundsByGuildId(String guildId);
 
-    public Integer getCount();
-
     public Integer getCountByGuildID(String guildID);
 
     public void addToGuild(String guildID);
+
+    public Sound getSound(String guildID, String filename);
 }

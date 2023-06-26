@@ -19,6 +19,16 @@ public class Sound {
     private String title;
     public Sound(){}
 
+    public Sound(String guildid, String filename){
+        this.guildid = guildid;
+        this.filename = filename;
+    }
+
+    public Sound(String guildid, String filename, String title) {
+        this(guildid,filename);
+        this.title = title;
+    }
+
     public String getFilename() {
         return filename;
     }

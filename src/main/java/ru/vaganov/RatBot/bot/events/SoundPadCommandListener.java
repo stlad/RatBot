@@ -7,6 +7,7 @@ import net.dv8tion.jda.api.interactions.components.buttons.Button;
 import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle;
 import ru.vaganov.RatBot.bot.RatBot;
 import ru.vaganov.RatBot.bot.soundLibraries.SoundLibrary;
+import ru.vaganov.RatBot.data.models.Guild;
 import ru.vaganov.RatBot.data.models.Sound;
 
 import java.util.ArrayList;
@@ -21,7 +22,6 @@ public class SoundPadCommandListener extends ListenerAdapter {
         switch (event.getName()) {
             case "pad":
                 event.getChannel().sendMessage("крысиные звуки").setActionRow(sendAudioButtons(event)).queue();
-
         }
 
     }
@@ -30,17 +30,21 @@ public class SoundPadCommandListener extends ListenerAdapter {
     @Override
     public void onButtonInteraction(ButtonInteractionEvent event){
         event.deferEdit().queue();
-        System.out.println(event.getButton().getId());
-        switch (event.getButton().getId()){
-            case "add":
-                addSound(event);
+        if(event.getButton().getId().equals("add")){
+            addSound(event);
         }
-        //
+        else{
+            playSound(event, RatBot.soundLibrary.getSound(event.getGuild().getId() ,event.getButton().getId()));
+        }
     }
 
     private static void addSound(ButtonInteractionEvent event){
         SoundLibrary lib = RatBot.soundLibrary;
         lib.addToGuild(event.getGuild().getId());
+    }
+
+    private static void playSound(ButtonInteractionEvent event, Sound sound){
+        event.getChannel().sendMessage("Сейчас играет: "+ sound.getTitle()).queue();
     }
 
     private static List<Button> sendAudioButtons(SlashCommandInteractionEvent event){
