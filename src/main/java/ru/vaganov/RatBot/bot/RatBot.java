@@ -41,6 +41,10 @@ public class RatBot{
         commands.addCommands(
                 Commands.slash("say", "Заставляет крысу сказать, что ты хочешь")
                         .addOption(STRING, "content", "Что крыса скажет", true));
+        commands.addCommands(
+                Commands.slash("add", "Научит крысу звучать по-новому")
+                        .addOption(ATTACHMENT, "soundfile", "Чему научишь крысу", true)
+                        .addOption(STRING, "name", "как назвать файл", true));
 
         commands.addCommands(Commands.slash("pad", "включает панель звуков"));
         commands.addCommands(Commands.slash("conn", "Открывает выбор голосвых каналов для подключения бота и подключает к выбранному каналу"));

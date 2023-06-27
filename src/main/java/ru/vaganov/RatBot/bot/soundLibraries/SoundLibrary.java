@@ -10,7 +10,8 @@ public interface SoundLibrary {
 
     public Integer getCountByGuildID(String guildID);
 
-    public void addToGuild(String guildID);
+    public void addToGuild(Sound sound);
 
     public Sound getSound(String guildID, String filename);
+
 }

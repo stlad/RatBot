@@ -16,6 +16,7 @@ import java.util.List;
 public class DirectoryLibrary implements SoundLibrary{
 
     private String basePath;
+
     public DirectoryLibrary(){
         basePath = BotEnvironment.getLibraryPath();
     }
@@ -42,10 +43,10 @@ public class DirectoryLibrary implements SoundLibrary{
     }
 
     @Override
-    public void addToGuild(String guildID) {
+    public void addToGuild(Sound sound) {
         //TODO сделать добавление звука, а не только директории
         try{
-            addDirectory(guildID);
+            addDirectory(sound.getGuildid());
         }
         catch (IOException e){return;}
     }
@@ -62,5 +63,6 @@ public class DirectoryLibrary implements SoundLibrary{
     private void addDirectory(String dirName) throws IOException {
         Files.createDirectories(Paths.get(basePath + dirName));
     }
+
 
 }

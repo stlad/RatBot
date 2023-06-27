@@ -1,8 +1,5 @@
 package ru.vaganov.RatBot.bot.audio;
-import com.sedmelluq.discord.lavaplayer.container.mp3.Mp3AudioTrack;
-import com.sedmelluq.discord.lavaplayer.container.mp3.Mp3Seeker;
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
-import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers;
@@ -10,10 +7,6 @@ import com.sedmelluq.discord.lavaplayer.tools.FriendlyException;
 import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import net.dv8tion.jda.api.entities.Guild;
-import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
-import ru.vaganov.RatBot.bot.RatBot;
-
-import javax.naming.InitialContext;
 import java.util.Map;
 import java.util.HashMap;
 public class RatBotAudioState {
@@ -52,7 +45,7 @@ public class RatBotAudioState {
             @Override
             public void trackLoaded(AudioTrack track) {
                 //channel.sendMessage("Adding to queue " + track.getInfo().title).queue();
-                System.out.println("Adding to queue " + track.getInfo().title);
+               // System.out.println("Adding to queue " + track.getInfo().title);
                 play(guild, musicManager, track);
             }
 
