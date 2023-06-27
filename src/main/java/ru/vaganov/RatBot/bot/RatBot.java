@@ -4,7 +4,8 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
-import ru.vaganov.RatBot.bot.events.InfoCommandsListener;
+import ru.vaganov.RatBot.bot.events.AudioChannelCommandListener;
+import ru.vaganov.RatBot.bot.events.MainCommandListener;
 import ru.vaganov.RatBot.bot.events.SoundPadCommandListener;
 import ru.vaganov.RatBot.bot.soundLibraries.DirectoryLibrary;
 import ru.vaganov.RatBot.bot.soundLibraries.SoundLibrary;
@@ -19,8 +20,10 @@ public class RatBot{
         soundLibrary = new DirectoryLibrary();
 
         JDA jda = JDABuilder.createDefault(BotEnvironment.getBotToken())
-                .addEventListeners(new InfoCommandsListener(),
-                        new SoundPadCommandListener())
+                .addEventListeners(
+                        new MainCommandListener(),
+                        new SoundPadCommandListener(),
+                        new AudioChannelCommandListener())
                 .build();
         CommandListUpdateAction commands = jda.updateCommands();
 
@@ -29,6 +32,8 @@ public class RatBot{
                         .addOption(STRING, "content", "Что крыса скажет", true));
 
         commands.addCommands(Commands.slash("pad", "включает панель звуков"));
+
+        commands.addCommands(Commands.slash("conn", "Открывает выбор голосвых каналов для подключения бота"));
         commands.queue();
     }
 

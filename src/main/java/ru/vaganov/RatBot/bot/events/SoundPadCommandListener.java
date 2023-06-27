@@ -21,7 +21,8 @@ public class SoundPadCommandListener extends ListenerAdapter {
 
         switch (event.getName()) {
             case "pad":
-                event.getChannel().sendMessage("крысиные звуки").setActionRow(sendAudioButtons(event)).queue();
+                //event.getChannel().sendMessage("крысиные звуки").setActionRow(sendAudioButtons(event)).queue();
+                event.reply("крысиные звуки").addActionRow(sendAudioButtons(event)).setEphemeral(true).queue();
         }
 
     }
