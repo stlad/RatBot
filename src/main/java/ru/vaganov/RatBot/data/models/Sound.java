@@ -55,6 +55,6 @@ public class Sound {
     }
 
     public String getAbsolutePath(){
-        return BotEnvironment.getLibraryPath()+"\"" + getGuildid()+"\""+getFilename();
+        return BotEnvironment.getLibraryPath()+"\\" + getGuildid()+"\\"+getFilename();
     }
 }

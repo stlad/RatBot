@@ -6,8 +6,8 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.components.buttons.Button;
 import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle;
 import ru.vaganov.RatBot.bot.RatBot;
+import ru.vaganov.RatBot.bot.audio.RatBotAudioState;
 import ru.vaganov.RatBot.bot.soundLibraries.SoundLibrary;
-import ru.vaganov.RatBot.data.models.Guild;
 import ru.vaganov.RatBot.data.models.Sound;
 
 import java.util.ArrayList;
@@ -45,7 +45,8 @@ public class SoundPadCommandListener extends ListenerAdapter {
     }
 
     private static void playSound(ButtonInteractionEvent event, Sound sound){
-        event.getChannel().sendMessage("Сейчас играет: "+ sound.getTitle()).queue();
+        //event.getChannel().sendMessage("Сейчас играет: "+ sound.getTitle()).queue();
+        RatBot.ratBotAudioState.loadAndPlay(event.getGuild(), sound.getAbsolutePath());
     }
 
     private static List<Button> sendAudioButtons(SlashCommandInteractionEvent event){

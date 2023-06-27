@@ -11,7 +11,12 @@ import net.dv8tion.jda.api.interactions.components.selections.EntitySelectMenu;
 import net.dv8tion.jda.api.interactions.components.selections.SelectMenu;
 import net.dv8tion.jda.api.interactions.components.selections.StringSelectMenu;
 import net.dv8tion.jda.api.managers.AudioManager;
+import ru.vaganov.RatBot.bot.RatBot;
+import ru.vaganov.RatBot.bot.audio.AudioPlayerSendHandler;
+import ru.vaganov.RatBot.bot.audio.GuildMusicManager;
+import ru.vaganov.RatBot.bot.audio.RatBotAudioState;
 
+import javax.sound.midi.Track;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,10 +28,14 @@ public class AudioChannelCommandListener extends ListenerAdapter {
             return;
         switch (event.getName()){
             case "conn":
-                //event.reply("conn").setEphemeral(true).queue();
                 EntitySelectMenu menu = createChannelSelectionMenu();
                 event.reply("Выберите канал для подключения").addActionRow(menu).setEphemeral(true).queue();
+                break;
+            case "disconn":
+                event.getGuild().getAudioManager().closeAudioConnection();
 
+                event.reply("Крыса убежала ").setEphemeral(true).queue();
+                break;
         }
     }
 
@@ -46,8 +55,8 @@ public class AudioChannelCommandListener extends ListenerAdapter {
         VoiceChannel channel = (VoiceChannel) event.getMentions().getChannels().get(0);
 
         AudioManager audioManager = event.getGuild().getAudioManager();
-        audioManager.openAudioConnection(channel);
 
+        audioManager.openAudioConnection(channel);
         event.getChannel().sendMessage("Крыса прибежала в: [" + channel.getName() + "]").queue();
     }
 
