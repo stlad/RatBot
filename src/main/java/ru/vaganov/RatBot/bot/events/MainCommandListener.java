@@ -4,6 +4,7 @@ import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEve
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.components.buttons.Button;
 import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle;
+import ru.vaganov.RatBot.bot.RatBot;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -35,15 +36,15 @@ public class MainCommandListener extends ListenerAdapter {
 
 
         String resultText = " ";
-        try (BufferedReader reader = new BufferedReader(new FileReader("resources/about.md"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(RatBot.botEnvironment.getInfoDirPath()+"about.md"))) {
             StringBuilder builder = new StringBuilder();
             String line;
             while ((line = reader.readLine()) != null) {
-                builder.append(line);
+                builder.append(line+"\n");
             }
             resultText = builder.toString();
         } catch (IOException e) {
-            //e.printStackTrace();
+            e.printStackTrace();
             resultText = "Увы, сказать то и нечего...";
         }
 

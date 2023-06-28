@@ -1,6 +1,7 @@
 package ru.vaganov.RatBot.data.models;
 
-import ru.vaganov.RatBot.bot.BotEnvironment;
+import ru.vaganov.RatBot.bot.RatBot;
+import ru.vaganov.RatBot.bot.environment.BotDotEnvironment;
 
 public class Sound {
     private String guildid;
@@ -46,6 +47,6 @@ public class Sound {
     }
 
     public String getAbsolutePath(){
-        return BotEnvironment.getLibraryPath() + getGuildid()+"\\"+getFilename();
+        return RatBot.botEnvironment.getLibraryPath() + getGuildid()+"\\"+getFilename();
     }
 }

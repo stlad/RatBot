@@ -1,7 +1,8 @@
 package ru.vaganov.RatBot.bot.soundLibraries;
 
 import org.springframework.stereotype.Component;
-import ru.vaganov.RatBot.bot.BotEnvironment;
+import ru.vaganov.RatBot.bot.RatBot;
+import ru.vaganov.RatBot.bot.environment.BotDotEnvironment;
 import ru.vaganov.RatBot.data.models.Sound;
 
 import java.io.File;
@@ -9,7 +10,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Component
@@ -18,7 +18,7 @@ public class DirectoryLibrary implements SoundLibrary{
     private String basePath;
 
     public DirectoryLibrary(){
-        basePath = BotEnvironment.getLibraryPath();
+        basePath = RatBot.botEnvironment.getLibraryPath();
     }
 
     @Override

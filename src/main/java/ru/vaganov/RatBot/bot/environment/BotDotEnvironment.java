@@ -1,29 +1,41 @@
-package ru.vaganov.RatBot.bot;
+package ru.vaganov.RatBot.bot.environment;
 
 
 import io.github.cdimascio.dotenv.Dotenv;
 
-public class BotEnvironment {
+public class BotDotEnvironment implements BotEnvironment{
     private static Dotenv dotenv;
-    public static void ConfigureBotEnv(){
+
+    public BotDotEnvironment(){
+        ConfigureBotEnv();
+    }
+
+    public void ConfigureBotEnv(){
         dotenv = Dotenv.configure()
                 //.directory("src/main/resources")
                 .filename(".env")
                 .load();
     }
 
-    private static void checkEnvCreated(){
+    private void checkEnvCreated(){
         if(dotenv==null)
             ConfigureBotEnv();
     }
-    public static String getBotToken(){
+    public String getBotToken(){
         checkEnvCreated();
         return dotenv.get("TOKEN");
     }
 
-    public static String getLibraryPath(){
+    public String getLibraryPath(){
         checkEnvCreated();
         return dotenv.get("SoundLibraryPath");
     }
+
+    @Override
+    public String getInfoDirPath() {
+        checkEnvCreated();
+        return dotenv.get("InfoDirectoryPath");
+    }
+
 
 }
