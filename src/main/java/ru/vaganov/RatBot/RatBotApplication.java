@@ -6,7 +6,6 @@ import org.springframework.context.annotation.ComponentScan;
 import ru.vaganov.RatBot.bot.RatBot;
 
 @SpringBootApplication
-@ComponentScan
 public class RatBotApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(RatBotApplication.class, args);

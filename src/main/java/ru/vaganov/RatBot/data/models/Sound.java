@@ -1,7 +1,6 @@
 package ru.vaganov.RatBot.data.models;
 
 import ru.vaganov.RatBot.bot.RatBot;
-import ru.vaganov.RatBot.bot.environment.BotDotEnvironment;
 
 public class Sound {
     private String guildid;
