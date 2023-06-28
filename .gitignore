@@ -4,11 +4,11 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-**/.env
+.env
 .mvn
 mvnw
 mvnw.cmd
-
+out/
 
 
 ### STS ###

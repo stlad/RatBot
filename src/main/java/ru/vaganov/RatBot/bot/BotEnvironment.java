@@ -7,7 +7,7 @@ public class BotEnvironment {
     private static Dotenv dotenv;
     public static void ConfigureBotEnv(){
         dotenv = Dotenv.configure()
-                .directory("src/main/resources")
+                //.directory("src/main/resources")
                 .filename(".env")
                 .load();
     }

@@ -35,6 +35,7 @@ public class RatBot{
                 .build();
         CommandListUpdateAction commands = RegisterCommands(jda.updateCommands());
         commands.queue();
+        
     }
 
     private static CommandListUpdateAction RegisterCommands(CommandListUpdateAction commands){
@@ -49,6 +50,7 @@ public class RatBot{
         commands.addCommands(Commands.slash("pad", "включает панель звуков"));
         commands.addCommands(Commands.slash("conn", "Открывает выбор голосвых каналов для подключения бота и подключает к выбранному каналу"));
         commands.addCommands(Commands.slash("disconn", "Отключает бота от голосового канала"));
+        commands.addCommands(Commands.slash("about", "Информация и биография крысы"));
 
         return commands;
     }

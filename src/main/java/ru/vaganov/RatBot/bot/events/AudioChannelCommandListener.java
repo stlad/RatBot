@@ -45,7 +45,7 @@ public class AudioChannelCommandListener extends ListenerAdapter {
         AudioManager audioManager = event.getGuild().getAudioManager();
 
         audioManager.openAudioConnection(channel);
-        event.getChannel().sendMessage("Крыса прибежала в: [" + channel.getName() + "]").queue();
+        //event.getChannel().sendMessage("Крыса прибежала в: [" + channel.getName() + "]").queue();
     }
 
     private static EntitySelectMenu createChannelSelectionMenu(){

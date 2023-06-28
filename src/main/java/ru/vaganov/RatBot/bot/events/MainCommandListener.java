@@ -2,6 +2,12 @@ package ru.vaganov.RatBot.bot.events;
 
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.interactions.components.buttons.Button;
+import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainCommandListener extends ListenerAdapter {
 
@@ -14,9 +20,8 @@ public class MainCommandListener extends ListenerAdapter {
         switch (event.getName()){
             case "say":
                 say(event, event.getOption("content").getAsString());
-
-            //default:
-            //    event.reply("I can't handle that command right now :(").setEphemeral(true).queue();
+            case "about":
+                about(event);
         }
     }
 
@@ -26,7 +31,27 @@ public class MainCommandListener extends ListenerAdapter {
     }
 
 
-    private void about(SlashCommandInteractionEvent event){
+    private void about(SlashCommandInteractionEvent event) {
+
+
+        String resultText = " ";
+        try (BufferedReader reader = new BufferedReader(new FileReader("resources/about.md"))) {
+            StringBuilder builder = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                builder.append(line);
+            }
+            resultText = builder.toString();
+        } catch (IOException e) {
+            //e.printStackTrace();
+            resultText = "Увы, сказать то и нечего...";
+        }
+
+        List<Button> buttons = new ArrayList<Button>();
+        buttons.add(Button.link("https://github.com/stlad/RatBot","GitHub"));
+
+
+        event.reply(resultText).addActionRow(buttons).queue();
 
     }
 }

@@ -1,17 +1,8 @@
 package ru.vaganov.RatBot.data.models;
 
-
-import jakarta.persistence.*;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import ru.vaganov.RatBot.bot.BotEnvironment;
 
-@Entity
 public class Sound {
-
-    @Id
-    @GeneratedValue
-    private Long id;
-
     private String guildid;
 
     private String filename;

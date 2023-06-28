@@ -60,9 +60,10 @@ public class SoundPadCommandListener extends ListenerAdapter {
         }
 
         Sound sound = new Sound(event.getGuild().getId(), soundname +"." + attachment.getFileExtension());
+        lib.addToGuild(sound);
         //TODO исправить на загрузку через lib.addToGuild. Избавиться от явного скачаивания файла в этом методе.
         attachment.getProxy().downloadToFile(new File(sound.getAbsolutePath()));
-        lib.addToGuild(sound);
+
         event.reply("Звук добавлен крысе").setEphemeral(true).queue();
     }
 
